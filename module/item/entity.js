@@ -890,6 +890,7 @@ export default class Item5e extends Item {
       data: rollData,
       title: title,
       flavor: title,
+      attackRoll: true,
       speaker: ChatMessage.getSpeaker({actor: this.actor}),
       dialogOptions: {
         width: 400,

@@ -10,6 +10,7 @@
  * @param {boolean} [options.elvenAccuracy=false]      Allow Elven Accuracy to modify this roll?
  * @param {boolean} [options.halflingLucky=false]      Allow Halfling Luck to modify this roll?
  * @param {boolean} [options.reliableTalent=false]     Allow Reliable Talent to modify this roll?
+ * @param {boolean} [options.attackRoll=false]         Is this an attack roll?
  */
 export default class D20Roll extends Roll {
   constructor(formula, data, options) {
@@ -75,17 +76,18 @@ export default class D20Roll extends Roll {
     if ( this.options.reliableTalent ) d20.modifiers.push("min10");
 
     // Handle Advantage or Disadvantage
-    if ( this.hasAdvantage ) {
-      d20.number = this.options.elvenAccuracy ? 3 : 2;
-      d20.modifiers.push("kh");
-      d20.options.advantage = true;
-    }
-    else if ( this.hasDisadvantage ) {
-      d20.number = 2;
-      d20.modifiers.push("kl");
-      d20.options.disadvantage = true;
-    }
-    else d20.number = 1;
+    //if ( this.hasAdvantage ) {
+      //d20.number = this.options.elvenAccuracy ? 3 : 2;
+      //d20.modifiers.push("kh");
+      //d20.options.advantage = true;
+      //d20.number = 1;
+    //}
+    //else if ( this.hasDisadvantage ) {
+      //d20.number = 1;
+      //d20.modifiers.push("kl");
+      //d20.options.disadvantage = true;
+    //}
+    d20.number = 1;
 
     // Assign critical and fumble thresholds
     if ( this.options.critical ) d20.options.critical = this.options.critical;
@@ -156,29 +158,52 @@ export default class D20Roll extends Roll {
       case D20Roll.ADV_MODE.DISADVANTAGE: defaultButton = "disadvantage"; break;
     }
 
+    if(this.options.attackRoll){
+        // Create the Dialog window and await submission of the form
+            return new Promise(resolve => {
+              new Dialog({
+                title,
+                content,
+                buttons: {
+                  normal: {
+                    label: game.i18n.localize("RELICS.NoCover"),
+                    callback: html => resolve(this._onDialogSubmit(html, D20Roll.ADV_MODE.NORMAL))
+                  },
+                  disadvantage: {
+                    label: game.i18n.localize("RELICS.Disadvantage"),
+                    callback: html => resolve(this._onDialogSubmit(html, D20Roll.ADV_MODE.DISADVANTAGE))
+                  },
+                  advantage: {
+                    label: game.i18n.localize("RELICS.Advantage"),
+                    callback: html => resolve(this._onDialogSubmit(html, D20Roll.ADV_MODE.ADVANTAGE))
+                  }
+                },
+                default: defaultButton,
+                close: () => resolve(null)
+              }, options).render(true);
+            });
+
+        }
+    else{
     // Create the Dialog window and await submission of the form
-    return new Promise(resolve => {
-      new Dialog({
-        title,
-        content,
-        buttons: {
-          advantage: {
-            label: game.i18n.localize("RELICS.Advantage"),
-            callback: html => resolve(this._onDialogSubmit(html, D20Roll.ADV_MODE.ADVANTAGE))
-          },
-          normal: {
-            label: game.i18n.localize("RELICS.Normal"),
-            callback: html => resolve(this._onDialogSubmit(html, D20Roll.ADV_MODE.NORMAL))
-          },
-          disadvantage: {
-            label: game.i18n.localize("RELICS.Disadvantage"),
-            callback: html => resolve(this._onDialogSubmit(html, D20Roll.ADV_MODE.DISADVANTAGE))
-          }
-        },
-        default: defaultButton,
-        close: () => resolve(null)
-      }, options).render(true);
-    });
+        return new Promise(resolve => {
+          new Dialog({
+            title,
+            content,
+            buttons: {
+              normal: {
+                label: game.i18n.localize("RELICS.Roll"),
+                callback: html => resolve(this._onDialogSubmit(html, D20Roll.ADV_MODE.NORMAL))
+              }
+            },
+            default: defaultButton,
+            close: () => resolve(null)
+          }, options).render(true);
+        });
+    }
+
+
+
   }
 
   /* -------------------------------------------- */
@@ -199,12 +224,25 @@ export default class D20Roll extends Roll {
       this.terms = this.terms.concat(bonus.terms);
     }
 
+
+    if (advantageMode == D20Roll.ADV_MODE.ADVANTAGE) {
+        this.terms.push(new OperatorTerm({operator: "-"}));
+        this.terms.push(new NumericTerm({number: "9"}));
+    }
+
+
+    if (advantageMode == D20Roll.ADV_MODE.DISADVANTAGE) {
+        this.terms.push(new OperatorTerm({operator: "-"}));
+        this.terms.push(new NumericTerm({number: "6"}));
+    }
+
     // Customize the modifier
     if ( form.ability?.value ) {
       const abl = this.data.abilities[form.ability.value];
       this.terms.findSplice(t => t.term === "@mod", new NumericTerm({number: abl.mod}));
       this.options.flavor += ` (${CONFIG.RELICS.abilities[form.ability.value]})`;
     }
+
 
     // Apply advantage or disadvantage
     this.options.advantageMode = advantageMode;

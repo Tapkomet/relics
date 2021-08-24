@@ -525,7 +525,7 @@ export default class Actor5e extends Actor {
     weight = weight.toNearest(0.1);
     const max = actorData.data.abilities.str.value * CONFIG.RELICS.encumbrance.strMultiplier * mod;
     const pct = Math.clamped((weight * 100) / max, 0, 100);
-    return { value: weight.toNearest(0.1), max, pct, encumbered: pct > (2/3) };
+    return { value: weight.toNearest(0.1), max, pct, encumbered: pct > (200/3) };
   }
 
   /* -------------------------------------------- */

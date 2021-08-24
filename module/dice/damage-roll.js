@@ -129,17 +129,12 @@ export default class DamageRoll extends Roll {
         title,
         content,
         buttons: {
-          critical: {
-            condition: allowCritical,
-            label: game.i18n.localize("RELICS.CriticalHit"),
-            callback: html => resolve(this._onDialogSubmit(html, true))
-          },
           normal: {
-            label: game.i18n.localize(allowCritical ? "RELICS.Normal" : "RELICS.Roll"),
+            label: game.i18n.localize("RELICS.Roll"),
             callback: html => resolve(this._onDialogSubmit(html, false))
           }
         },
-        default: defaultCritical ? "critical" : "normal",
+        default: "normal",
         close: () => resolve(null)
       }, options).render(true);
     });
