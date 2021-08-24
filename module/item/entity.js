@@ -33,23 +33,23 @@ export default class Item5e extends Item {
       else if (this.data.type === "tool") return "int";
 
       // Weapons
-      else if (this.data.type === "weapon") {
-        const wt = itemData.weaponType;
+      //else if (this.data.type === "weapon") {
+      //  const wt = itemData.weaponType;
 
         //Weapons using the spellcasting modifier
-        if (["msak", "rsak"].includes(itemData.actionType)) {
-          return actorData.attributes.spellcasting || "int";
-        }
+       // if (["msak", "rsak"].includes(itemData.actionType)) {
+        //  return actorData.attributes.spellcasting || "con";
+       // }
 
         // Finesse weapons - Str or Dex (PHB pg. 147)
-        else if (itemData.properties.fin === true) {
-          return (actorData.abilities["dex"].mod >= actorData.abilities["str"].mod) ? "dex" : "str";
-        }
+        //else if (itemData.properties.fin === true) {
+        //  return (actorData.abilities["dex"].mod >= actorData.abilities["str"].mod) ? "dex" : "str";
+        //}
 
         // Ranged weapons - Dex (PH p.194)
-        else if ( ["simpleR", "martialR"].includes(wt) ) return "dex";
-      }
-      return "str";
+       // else if ( ["simpleR", "martialR"].includes(wt) ) return "dex";
+     // }
+      return "con";
     }
 
     // Case 3 - unknown
