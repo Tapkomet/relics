@@ -57,21 +57,40 @@
                 </select>
             </div>
 
+            <!--
             <div class="form-group">
                 <label>{{localize "RELICS.Attunement"}}</label>
                 <select name="data.attunement" data-dtype="Number">
                     {{selectOptions config.attunements selected=data.attunement localize=true}}
                 </select>
             </div>
+            -->
 
+            {{!-- Weapon Status --}}
             <div class="form-group stacked">
                 <label>{{ localize "RELICS.ItemConsumableStatus" }}</label>
+                <div class="form-fields">
+                    <label class="checkbox">
+                        <input type="checkbox" name="data.proficient" {{checked data.proficient}}/> {{ localize "RELICS.Proficient" }}
+                    </label>
+                    <label class="checkbox">
+                        <input type="checkbox" name="data.equipped" {{checked data.equipped}}/> {{ localize "RELICS.Equipped" }}
+                    </label>
+                    <label class="checkbox">
+                        <input type="checkbox" name="data.identified" {{checked data.identified}}/> {{ localize "RELICS.Identified" }}
+                    </label>
+                </div>
+            </div>
+            {{/unless}}
+
+            {{!-- Weapon Properties --}}
+            <div class="form-group stacked weapon-properties">
+                <label>{{ localize "RELICS.ItemWeaponProperties" }}</label>
+                {{#each config.weaponProperties as |name prop|}}
                 <label class="checkbox">
-                    <input type="checkbox" name="data.equipped" {{checked data.equipped}}/> {{ localize "RELICS.Equipped" }}
+                    <input type="checkbox" name="data.properties.{{prop}}" {{checked (lookup ../data.properties prop)}}/> {{ name }}
                 </label>
-                <label class="checkbox">
-                    <input type="checkbox" name="data.identified" {{checked data.identified}}/> {{ localize "RELICS.Identified" }}
-                </label>
+                {{/each}}
             </div>
 
             <h3 class="form-header">{{ localize "RELICS.ItemConsumableUsage" }}</h3>
