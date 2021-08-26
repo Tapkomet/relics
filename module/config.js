@@ -387,6 +387,7 @@ RELICS.equipmentTypes = {
   "overwear": "RELICS.EquipmentOverwear",
   "clothing": "RELICS.EquipmentClothing",
   "trinket": "RELICS.EquipmentTrinket",
+  "upgrade": "RELICS.EquipmentUpgrade",
   "vehicle": "RELICS.EquipmentVehicle"
 };
 
@@ -719,6 +720,7 @@ RELICS.weaponProperties = {
   "rch": "RELICS.WeaponPropertiesRch",
   "shd": "RELICS.WeaponPropertiesShield",
   "shc": "RELICS.WeaponPropertiesShocking",
+  "shm": "RELICS.WeaponPropertiesShockMode",
   "smk": "RELICS.WeaponPropertiesSmoke",
   "sda": "RELICS.WeaponPropertiesSidearm",
   "sni": "RELICS.WeaponPropertiesSniper",
