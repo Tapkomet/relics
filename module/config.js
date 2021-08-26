@@ -729,7 +729,8 @@ RELICS.weaponProperties = {
   "stc": "RELICS.WeaponPropertiesSticky",
   "sup": "RELICS.WeaponPropertiesSuppressive",
   "thr": "RELICS.WeaponPropertiesThr",
-  "unr": "RELICS.WeaponPropertiesUnreliable"
+  "unr": "RELICS.WeaponPropertiesUnreliable",
+  "unw": "RELICS.WeaponPropertiesUnwieldy"
 };
 
 
