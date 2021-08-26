@@ -662,7 +662,7 @@ export default class ActorSheet5e extends ActorSheet {
       const similarItem = this.actor.items.find(i => {
         const sourceId = i.getFlag("core", "sourceId");
         return sourceId && (sourceId === itemData.flags.core?.sourceId) &&
-               (i.type === "consumable");
+               (i.type === "consumable") && (i.name === itemData.name);
       });
       if ( similarItem ) {
         return similarItem.update({
