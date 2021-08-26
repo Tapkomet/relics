@@ -46,7 +46,7 @@
   "RELICS.AbilityUseConsume": "Consume Available Usage?",
   "RELICS.AbilityUseChargesLabel": "{value} Charges",
   "RELICS.AbilityUseConsumableLabel": "{max} per {per}",
-  "RELICS.AbilityUseCast": "Cast Spell",
+  "RELICS.AbilityUseCast": "Cast Psi Power",
   "RELICS.AbilityUseUse": "Use Ability",
   "RELICS.AbilityUseConfig": "Usage Configuration",
   "RELICS.Action": "Main Action",
