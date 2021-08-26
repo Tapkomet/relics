@@ -56,7 +56,7 @@ export default class ActorSheet5eVehicle extends ActorSheet5e {
     // Compute overall encumbrance
     const max = actorData.data.attributes.capacity.cargo;
     const pct = Math.clamped((totalWeight * 100) / max, 0, 100);
-    return {value: totalWeight.toNearest(0.1), max, pct};
+    return {value: totalWeight.toNearest(0.01), max, pct};
   }
 
   /* -------------------------------------------- */
