@@ -1,6 +1,6 @@
 # Foundry Virtual Tabletop - Relics
 
 
-## Installation Instructions
+## Installation Instruction
 
 https://raw.githubusercontent.com/Tapkomet/relics/main/system.json
