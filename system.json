@@ -2,7 +2,7 @@
   "name": "relics",
   "title": "Relics of the Void",
   "description": "A custom sci-fi system.",
-  "version": "1.3.18",
+  "version": "1.3.19",
   "author": "Tapkomet",
   "scripts": [],
   "esmodules": ["relics.js"],
