@@ -507,7 +507,8 @@
       "consumableType": "potion",
       "uses": {
         "autoDestroy": false
-      }
+      },
+      "proficient": true
     },
     "equipment": {
       "templates": ["itemDescription", "physicalItem", "activatedEffect", "action", "mountable"],
@@ -539,7 +540,7 @@
       "templates": ["itemDescription", "physicalItem"],
       "ability": "int",
       "chatFlavor": "",
-      "proficient": 0
+      "proficient": true
     },
     "spell": {
       "templates": ["itemDescription", "activatedEffect", "action"],

@@ -117,7 +117,7 @@ RELICS.weaponProficienciesMap = {
   "rocketL": "rla",
   "flamethrower": "fla",
   "shield": "shi",
-  "lightC": "lca",
+  "lightC": "lca"
 }
 
 /**
@@ -427,11 +427,8 @@ RELICS.armorProficienciesMap = {
 RELICS.consumableTypes = {
   "ammo": "RELICS.ConsumableAmmunition",
   "potion": "RELICS.ConsumablePotion",
-  "poison": "RELICS.ConsumablePoison",
   "food": "RELICS.ConsumableFood",
-  "scroll": "RELICS.ConsumableScroll",
   "wand": "RELICS.ConsumableWand",
-  "rod": "RELICS.ConsumableRod",
   "trinket": "RELICS.ConsumableTrinket"
 };
 
